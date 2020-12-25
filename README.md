@@ -1,4 +1,4 @@
-# NOTES APP
+# WEATHER APP
 
 We've built A Weather With Node.js.
 

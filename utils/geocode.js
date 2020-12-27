@@ -9,9 +9,6 @@ const geocode = (address, callback) => {
             } else if(response.body.features.length === 0){
                 callback('Please provie valid input')
             } else {
-                // const coordinate = response.body.features[0].geometry.coordinates
-                // console.log(response.body)
-
                 callback(undefined, {
                     latitude: response.body.features[0].center[1],
                     longitude: response.body.features[0].center[0],

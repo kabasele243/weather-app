@@ -14,7 +14,7 @@ const partialsPath = path.join(__dirname, './templates/partials')
 app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
- console.log(partialsPath)
+
 
 //Static directory
 app.use(express.static(publicDirectory))
@@ -28,7 +28,8 @@ app.get('', (req, res) => {
 
 app.get('/help', (req, res) => {
     res.render('help', {
-        title: "Help"
+        title: "Help",
+        helpText: 'This is some helpful text.'
     })
 })
 app.get('/about', (req, res) => {
@@ -41,7 +42,17 @@ app.get('/weather', (req, res) => {
     res.send('Weather')
 })
 
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        errorMessage: "Help not found"
+    })
+})
 
+app.get("*", (req, res) => {
+    res.render('404', {
+        errorMessage: 'Page not found'
+    })
+})
 app.listen(3000, () => {
     console.log('Server is up running on port 3000')
 })

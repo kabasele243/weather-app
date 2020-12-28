@@ -5,11 +5,12 @@ const hbs = require('hbs')
 const app = express()
 
 //Define paths for Express config
-const publicDirectory = path.join(__dirname, './public')
-const viewsPath = path.join(__dirname, './templates/views')
-const partialsPath = path.join(__dirname, './templates/partials')
+const publicDirectory = path.join(__dirname, '../public')
+const viewsPath = path.join(__dirname, '../templates/views')
+const partialsPath = path.join(__dirname, '../templates/partials')
 
-
+console.log(publicDirectory)
+console.log(viewsPath)
 //Setup handlebars engine and views location
 app.set('view engine', 'hbs')
 app.set('views', viewsPath)
@@ -39,7 +40,16 @@ app.get('/about', (req, res) => {
 })
 
 app.get('/weather', (req, res) => {
-    res.send('Weather')
+    if(!req.query.address) {
+         return res.send({
+            error: 'You must provide an address'
+        })
+    }
+    res.send({
+        forecast: 'It is snowing',
+        location: 'Philadelphia',
+        address: req.query.address
+    })
 })
 
 app.get('/help/*', (req, res) => {

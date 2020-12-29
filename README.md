@@ -31,4 +31,5 @@ Please follow these instructions to get this repo ready to run on your local mac
 - Node.js 
 
 ## Notes
+ Using Mapbox Api for Geolocalisation and WeatherStack for forecast!
 
